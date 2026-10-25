@@ -147,6 +147,7 @@ async function createTransaction(req, res) {
   /**
    * 4. Derive sender balance from ledger
    */
+  // Calculate the sender's current balance before validating the transfer amount.
   const balance = await fromUserAccount.getBalance();
 
   if (balance < amount) {
