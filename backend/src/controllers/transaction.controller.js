@@ -95,6 +95,12 @@ async function createTransaction(req, res) {
    * 2. Validate idempotency key
    */
 
+  /**
+ * Check whether this request has already been processed.
+ * This prevents duplicate transactions when a client retries
+ * the same transfer request using an existing idempotency key.
+ */
+
   const isTransactionAlreadyExists = await transactionModel.findOne({
     idempotencyKey,
   });
